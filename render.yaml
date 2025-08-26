@@ -1,0 +1,12 @@
+services: 
+"  - type: web" 
+"    name: sai-baba-temple" 
+"    env: docker" 
+"    plan: free" 
+"    buildCommand: |" 
+"      apt-get update && apt-get install -y unzip git curl libpng-dev libonig-dev libxml2-dev zip" 
+"      apt-get install -y php-cli php-mbstring php-bcmath php-curl php-xml composer" 
+"      composer install --optimize-autoloader --no-dev" 
+"      php artisan key:generate" 
+"      php artisan migrate --force" 
+"    startCommand: php artisan serve --host 0.0.0.0 --port 10000" 
